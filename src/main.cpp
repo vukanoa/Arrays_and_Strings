@@ -7,23 +7,27 @@ main()
 	/* === TESTING === */
 	/* =============== */
 
-	/* Unique Characters */
+	/* Check Permutation */
 	std::cout << "\n\t=========================\n";
-	std::cout << "\t=== UNIQUE CHARACTERS ===\n";
+	std::cout << "\t=== CHECK PERMUTATION ===\n";
 	std::cout << "\t=========================\n\n";
 
 	/* Example 1 */
-	std::string s = "algorithm";
+	// std::string first  = "action";
+	// std::string second = "cniota";
 
 	/* Example 2 */
-	// std::string s = "manacher";
+	std::string first  = "action";
+	std::string second = "statue";
 
-	if (unique_characters_1(s))
-	// if (unique_characters_2(s))
-	// if (unique_characters_3(s))
-		std::cout << "\n\tThe String: \"" << s << "\" is INDEED consisted of unique characters!\n\n";
+	// std::cout << "\n\tString_1: \"" << first  << "\"\n";
+	// std::cout << "\n\tString_2: \"" << second << "\"\n\n";
+
+	if (check_permutation(first, second))
+		std::cout << "\n\tThese Strings are INDEED permutations!\n\n";
 	else
-		std::cout << "\n\tThe String: \"" << s << "\" is NOT consisted of unique characters!\n\n";
+		std::cout << "\n\tThese Strings are NOT permutations!\n\n";
+	
 
 
 	return 0;

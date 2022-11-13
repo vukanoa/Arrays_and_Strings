@@ -1,4 +1,5 @@
 #include <unordered_set>
+#include <map>
 #include "arrays_and_strings.h"
 
 /*
@@ -86,3 +87,38 @@ unique_characters_3(std::string s)
 
 	return true;
 }
+
+
+/*
+	When is one string a permuration of another?
+	1. They have to be of the same length
+	2. They cannot have different characters
+	3. They have to have the same number of each character
+*/
+/* Time  Complexity O(n) */
+/* Space Complexity O(n) */
+bool
+check_permutation(std::string s, std::string t)
+{
+	// Check if they are of the same length
+	if (s.length() != t.length())
+		return false;
+	
+	std::map<char, int> map;
+
+	// Fill the Hash Table
+	for(auto x : s)
+		map[x]++;
+	
+	// Iterate through t and check if they are the same
+	for(auto x : t)
+	{
+		if (map.find(x) == map.end() || map[x] <= 0)
+			return false;
+
+		map[x]--;
+	}
+
+	return true;
+}
+
