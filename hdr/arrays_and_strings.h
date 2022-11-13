@@ -9,6 +9,8 @@ bool unique_characters_3(std::string s); // Time O(n^2), Space O(1) w/  Constrai
 /* TODO  Time O(n * logn), Space O(1), HeapSort */
 // bool unique_characters_4(std::string s);
 
-bool check_permutation(std::string s, std::string t);
+bool check_permutation(std::string  s, std::string t);
+void URLify           (std::string& s, int true_length);
+
 
 #endif // _ARRAYS_AND_STRINGS_H_

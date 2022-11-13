@@ -122,3 +122,33 @@ check_permutation(std::string s, std::string t)
 	return true;
 }
 
+
+/* Time  Complexity O(n) */
+/* Space Complexity O(1) */
+void
+URLify(std::string& s, int true_length)
+{
+	int n = s.length();
+
+	int j = n - 1;
+	int i = n - 1;
+	while(j > 0)
+	{
+		// Find first non-blank character from the back
+		if (j == n - 1)
+		{
+			while (s[j] == ' ')
+				j--;
+		}
+		
+		if (s[j] == ' ')
+		{
+			s[i--] = '0';
+			s[i--] = '2';
+			s[i--] = '%';
+			j--;
+		}
+		else
+			s[i--] = s[j--];
+	}
+}
