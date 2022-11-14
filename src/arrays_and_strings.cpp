@@ -1,7 +1,5 @@
 #include <unordered_set>
 #include <map>
-#include <cstring>
-#include <bitset>
 #include "arrays_and_strings.h"
 
 /* ASCII */
@@ -201,4 +199,77 @@ palindrome_permutation(std::string s)
 	}
 
 	return (bit_vector & (bit_vector - 1)) == 0;
+}
+
+
+/* Time  Complexity O(n) */
+/* Space Complexity O(1) */
+bool
+one_away(std::string s, std::string t)
+{
+	int first  = s.length();
+	int second = t.length();
+	if (first - second > 1 || second - first > 1)
+		return false;
+	
+
+	bool difference_exist = false;
+	int i = 0;
+	int j = 0;
+
+	if (first > second)
+	{
+		while (i < second && j < second)
+		{
+			if (s[i] == t[j])
+			{
+				i++;
+				j++;
+			}
+			else if (s[i] != t[j])
+			{
+				if (difference_exist)
+					return false;
+
+				difference_exist = true;
+				i++;
+			}
+		}
+	}
+	else if (first < second)
+	{
+		while (i < first && j < first)
+		{
+			if (s[i] == t[j])
+			{
+				i++;
+				j++;
+			}
+			else if (s[i] != t[j])
+			{
+				if (difference_exist)
+					return false;
+
+				difference_exist = true;
+				j++;
+			}
+		}
+	}
+	else // Equal length
+	{
+		for (int i = 0; i < first; i++)
+		{
+			if (s[i] == t[i])
+				continue;
+			else if (s[i] != t[i])
+			{
+				if (difference_exist)
+					return false;
+
+				difference_exist = true;
+			}
+		}
+	}
+
+	return true;
 }
