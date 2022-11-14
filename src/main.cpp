@@ -7,22 +7,23 @@ main()
 	/* === TESTING === */
 	/* =============== */
 
-	/* URLify */
-	std::cout << "\n\t==============\n";
-	std::cout << "\t=== URLify ===\n";
-	std::cout << "\t==============\n\n";
-	
-	std::string s = "Mr Luke Smith    ";
-	// std::string s = "Mr Kevin Smith    ";
-	// std::string s = "Mr s a b      ";
+	/* Palindrome Permutation */
+	std::cout << "\n\t==============================\n";
+	std::cout << "\t=== PALINDROME PERMUTATION ===\n";
+	std::cout << "\t==============================\n\n";
 
-	int true_length = s.length();
-	
-	std::cout << "\n\tBefore: \"" << s << "\"\n\n";
-	URLify(s, true_length);
-	std::cout << "\tAfter:  \"" << s << "\"\n\n";
+	std::string s = "Tact Coa";
+	// std::string s = "Tact Coal";
+	// std::string s = "Tact Ca";
+	// std::string s = "anavolimilovana";
+	// std::string s = "chsStrTrch";
+	// std::string s = "bamararabaam";
+	// std::string s = "soap";
 
-
+	if (palindrome_permutation(s))
+		std::cout << "\n\tAt least one permutation of a String: \"" << s << "\" is INDEED a palindrome!\n\n";
+	else
+		std::cout << "\n\tPermutations of a String: \"" << s << "\" are NOT a palindrome!\n\n";
 
 	return 0;
 }

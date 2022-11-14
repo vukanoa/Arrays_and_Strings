@@ -1,6 +1,15 @@
 #include <unordered_set>
 #include <map>
+#include <cstring>
+#include <bitset>
 #include "arrays_and_strings.h"
+
+/* ASCII */
+#define UPPERCASE_A 65
+#define UPPERCASE_Z 90
+#define LOWERCASE_A 97
+#define LOWERCASE_Z 122
+
 
 /*
 	If it's not only lowercase English letters then we could use a
@@ -151,4 +160,45 @@ URLify(std::string& s, int true_length)
 		else
 			s[i--] = s[j--];
 	}
+}
+
+
+/* Time  Complexity O(n) */
+/* Space Complexity O(1) */ // Assuming English Alphabet
+bool
+palindrome_permutation(std::string s)
+{
+	if (s.empty())
+		return true; // Empty string is indeed a palindrome
+
+	int bit_vector = 0;
+
+	/* Case-insensitive --> 'A' <==> 'a' */
+	for (auto x : s)
+	{
+		// Ignore non-letter characters
+		if (x < UPPERCASE_A || (x > UPPERCASE_Z && x < LOWERCASE_A) || x > LOWERCASE_Z)
+			continue;
+
+		if (UPPERCASE_A <= x && x <= UPPERCASE_Z) // Uppercase letter
+		{
+			int mask = 1 << (x - UPPERCASE_A);
+
+			if (bit_vector & mask) // If odd number of occurrence
+				bit_vector ^= (1 << (x - UPPERCASE_A)); // Now it's even
+			else
+				bit_vector |= (1 << (x - UPPERCASE_A)); // Now it's odd
+		}
+		else // Lowercase letter
+		{
+			int mask = 1 << (x - LOWERCASE_A);
+
+			if (bit_vector & mask) // If odd number of occurrence
+				bit_vector ^= mask; // Now it's even
+			else
+				bit_vector |= mask; // Now it's odd
+		}
+	}
+
+	return (bit_vector & (bit_vector - 1)) == 0;
 }
