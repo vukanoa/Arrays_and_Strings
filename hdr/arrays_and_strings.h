@@ -3,7 +3,8 @@
 
 #include <iostream>
 
-static const int N = 5;
+static const int N = 4;
+static const int M = 5;
 
 // Problems
 bool unique_characters_1(std::string s); // Time O(1),   Space O(1) w/  Assumption
@@ -18,9 +19,11 @@ bool        palindrome_permutation(std::string  s);
 bool        one_away              (std::string  s, std::string t);
 std::string string_compression    (std::string  s);
 void        rotate_matrix         (int **matrix);
+void        zero_matrix           (int **matrix);
 
 // Utility functions
-void print_matrix(int **matrix);
+void print_square_matrix(int **matrix);
+void print_rectangle_matrix(int **matrix);
 
 
 #endif // _ARRAYS_AND_STRINGS_H_

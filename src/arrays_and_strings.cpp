@@ -319,29 +319,13 @@ string_compression(std::string  s)
 }
 
 
-void
-print_matrix(int **matrix)
-{
-	std::cout << "\n\t";
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			std::cout << matrix[i][j] << " ";
-		}
-		std::cout << "\n\t";
-	}
-	std::cout << "\n";
-}
-
-
 /* Time  Complexity O(n^2) */
 /* Space Complexity O(1) */
 void
 rotate_matrix(int **matrix)
 {
 	std::cout << "\n\tOriginal Matrix: \n";
-	print_matrix(matrix);
+	print_square_matrix(matrix);
 
 	int i = 0;
 	int j = 0;
@@ -372,5 +356,122 @@ rotate_matrix(int **matrix)
 	}
 
 	std::cout << "\n\n\tRotated Matrix: \n";
-	print_matrix(matrix);
+	print_square_matrix(matrix);
+}
+
+
+/* Time  Complexity O(n^2) */
+/* Space Complexity O(1) */
+void
+zero_matrix(int **matrix)
+{
+	std::cout << "\n\tOriginal Matrix:\n";
+	print_rectangle_matrix(matrix);
+
+	bool first_row_has_zero = false;
+	bool first_col_has_zero = false;
+
+	// Check if there is a zero in the first row
+	for (int j = 0; j < N; j++)
+	{
+		if (matrix[0][j] == 0)
+		{
+			first_row_has_zero = true;
+			break;
+		}
+	}
+
+	// Check if there is a zero in the first col
+	for (int i = 0; i < M; i++)
+	{
+		if (matrix[i][0] == 0)
+		{
+			first_col_has_zero = true;
+			break;
+		}
+	}
+
+	// Check the rest of the matrix
+	for (int i = 1; i < M; i++)
+	{
+		for (int j = 1; j < N; j++)
+		{
+			if (matrix[i][j] == 0)
+			{
+				matrix[i][0] = 0;
+				matrix[0][j] = 0;
+			}
+		}
+	}
+
+	// Nullify Rows based on first row
+	for (int i = 1; i < M; i++)
+	{
+		if (matrix[i][0] == 0)
+		{
+			// Nullify the entire row
+			for (int x = 0; x < N; x++)
+				matrix[i][x] = 0;
+		}
+	}
+
+	// Nullify Columns based on first column
+	for (int j = 1; j < N; j++)
+	{
+		if (matrix[0][j] == 0)
+		{
+			// Nullify the entire column
+			for (int x = 0; x < M; x++)
+				matrix[x][j] = 0;
+		}
+	}
+
+	// Nullify First Row
+	if (first_row_has_zero)
+	{
+		for (int j = 0; j < N; j++)
+			matrix[0][j] = 0;
+	}
+
+	// Nullify First Column
+	if (first_col_has_zero)
+	{
+		for (int i = 0; i < M; i++)
+			matrix[i][0] = 0;
+	}
+
+	std::cout << "\n\tZero Matrix:\n";
+	print_rectangle_matrix(matrix);
+}
+
+
+void
+print_square_matrix(int **matrix)
+{
+	std::cout << "\n\t";
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			std::cout << matrix[i][j] << " ";
+		}
+		std::cout << "\n\t";
+	}
+	std::cout << "\n";
+}
+
+
+void
+print_rectangle_matrix(int **matrix)
+{
+	std::cout << "\n\t";
+	for (int i = 0; i < M; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			std::cout << matrix[i][j] << " ";
+		}
+		std::cout << "\n\t";
+	}
+	std::cout << "\n";
 }
