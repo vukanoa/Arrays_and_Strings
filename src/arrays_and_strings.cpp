@@ -273,3 +273,45 @@ one_away(std::string s, std::string t)
 
 	return true;
 }
+
+
+std::string
+string_compression(std::string  s)
+{
+	if (s.empty())
+		return s;
+	
+	size_t twice_the_length = s.size() * 2;
+	std::string compressed(twice_the_length, ' ');
+
+	int x = 0;
+	int count = 1;
+	unsigned compressed_size = 1;
+
+	// Put the first letter
+	compressed[x++] = s[0];
+
+	for (unsigned i = 1; i < s.length(); i++)
+	{
+		if (s[i] != s[i - 1])
+		{
+			compressed[x++] = count + '0';
+			count = 1;
+			compressed[x++] = s[i];
+
+			compressed_size += 2;
+		}
+		else
+			count++;
+	}
+	
+	// Fill the last count
+	compressed[x++] = count + '0';
+	compressed_size++;
+	compressed.resize(compressed_size);
+
+	if (compressed_size < s.size())
+		return compressed;
+
+	return s;
+}
