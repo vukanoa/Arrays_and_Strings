@@ -275,6 +275,8 @@ one_away(std::string s, std::string t)
 }
 
 
+/* Time  Complexity O(n) */
+/* Space Complexity O(n) */
 std::string
 string_compression(std::string  s)
 {
@@ -314,4 +316,61 @@ string_compression(std::string  s)
 		return compressed;
 
 	return s;
+}
+
+
+void
+print_matrix(int **matrix)
+{
+	std::cout << "\n\t";
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			std::cout << matrix[i][j] << " ";
+		}
+		std::cout << "\n\t";
+	}
+	std::cout << "\n";
+}
+
+
+/* Time  Complexity O(n^2) */
+/* Space Complexity O(1) */
+void
+rotate_matrix(int **matrix)
+{
+	std::cout << "\n\tOriginal Matrix: \n";
+	print_matrix(matrix);
+
+	int i = 0;
+	int j = 0;
+	int border = N - 1;
+	int half = (N % 2 == 0) ? N/2 - 1 : N/2;
+
+	while (border > half)
+	{
+		int tmp_1 = matrix[j][N - 1 - i];
+		matrix[j][N - 1 - i] = matrix[i][j];
+
+		int tmp_2 = matrix[N - 1 - i][N - 1 - j];
+		matrix[N - 1 - i][N - 1 - j] = tmp_1;
+
+		tmp_1 = matrix[N - 1 - j][i];
+		matrix[N - 1 - j][i] = tmp_2;
+
+		matrix[i][j] = tmp_1;
+		
+		j++;
+
+		if (j >= border)
+		{
+			i++;
+			j = i;
+			border--;
+		}
+	}
+
+	std::cout << "\n\n\tRotated Matrix: \n";
+	print_matrix(matrix);
 }
