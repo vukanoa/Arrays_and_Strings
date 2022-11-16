@@ -20,10 +20,12 @@ bool        one_away              (std::string  s, std::string t);
 std::string string_compression    (std::string  s);
 void        rotate_matrix         (int **matrix);
 void        zero_matrix           (int **matrix);
+bool        string_rotation       (std::string s1, std::string s2);
 
 // Utility functions
 void print_square_matrix(int **matrix);
 void print_rectangle_matrix(int **matrix);
+bool is_substring(std::string s1, std::string s2);
 
 
 #endif // _ARRAYS_AND_STRINGS_H_

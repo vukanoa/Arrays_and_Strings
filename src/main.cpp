@@ -8,28 +8,24 @@ main()
 	/* === TESTING === */
 	/* =============== */
 
-	/* Zero Matrix */
-	std::cout << "\n\t===================\n";
-	std::cout << "\t=== ZERO MATRIX ===\n";
-	std::cout << "\t===================\n\n";
+	/* String Rotation */
+	std::cout << "\n\t=======================\n";
+	std::cout << "\t=== STRING ROTATION ===\n";
+	std::cout << "\t=======================\n\n";
 
-	srand(time(NULL));
+	/* Example 1 */
+	std::string s1 = "waterbottle";
+	std::string s2 = "erbottlewat";
 
-	int **matrix;
-	matrix = new int* [M];
-	for (int i = 0; i < M; i++)
-		matrix[i] = new int[N];
+	/* Example 2 */
+	// std::string s1 = "waterbottle";
+	// std::string s2 = "erbottletaw";
 
-	/* Change the value of N in arrays_and_strings.h for different Examples */
-	for (int i = 0; i < M; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			matrix[i][j] = rand() % 10;
-		}
-	}
+	if (string_rotation(s1, s2))
+		std::cout << "\n\tString \"" << s2 << "\" is INDEED a rotation of a String \"" << s1 << "\"\n\n";
+	else
+		std::cout << "\n\tString \"" << s2 << "\" is NOT a rotation of a String \"" << s1 << "\"\n\n";
 
-	zero_matrix(matrix);
 
 	return 0;
 }

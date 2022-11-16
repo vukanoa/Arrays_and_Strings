@@ -445,6 +445,31 @@ zero_matrix(int **matrix)
 }
 
 
+/* Time  Complexity O(M * N) */
+/* Space Complexity O(1) */
+bool
+string_rotation(std::string s1, std::string s2)
+{
+	int len_one = s1.length(); // N
+	int len_two = s2.length(); // M
+
+	if (len_one <= 0 || len_two <= 0)
+		return false;
+
+	if (len_one == len_two)
+	{
+		std::string s1s1 = s1 + s1;
+
+		/* Time  Complexity O(M * N) */
+		/* Space Complexity O(1) */
+		if (is_substring(s1s1, s2))
+			return true;
+	}
+
+	return false;
+}
+
+
 void
 print_square_matrix(int **matrix)
 {
@@ -474,4 +499,30 @@ print_rectangle_matrix(int **matrix)
 		std::cout << "\n\t";
 	}
 	std::cout << "\n";
+}
+
+
+/* Time  Complexity O(M * N) */
+/* Space Complexity O(1) */
+bool
+is_substring(std::string s1, std::string s2)
+{
+	int first_len  = s1.length(); // N
+	int second_len = s2.length(); // M
+	int new_len    = first_len - second_len; // N - M
+
+	for (int i = 0; i < new_len; i++)
+	{
+		int j;
+		for (j = 0; j < second_len; j++)
+		{
+			if (s1[i + j] != s2[j])
+				break;
+		}
+
+		if (j == second_len)
+			return true;
+	}
+
+	return false;
 }
